@@ -760,112 +760,19 @@ end)
 
 
 local Button = MiscTab:CreateButton({
-   Name = "CrossHair",
+   Name = "Curse Mark Crosshair",
    Callback = function()
-local function API_Check()
-    if Drawing == nil then
-        return "No"
-    else
-        return "Yes"
-    end
-end
-
-local Find_Required = API_Check()
-
-if Find_Required == "No" then
-    game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = "Exunys Developer";
-        Text = "Crosshair script could not be loaded because your exploit is unsupported.";
-        Duration = math.huge;
-        Button1 = "OK"
-    })
-
-    return
-end
-
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local Camera = workspace.CurrentCamera
-
-local Typing = false
-
-local ViewportSize_ = Camera.ViewportSize / 2
-local Axis_X, Axis_Y = ViewportSize_.X, ViewportSize_.Y
-
-local HorizontalLine = Drawing.new("Line")
-local VerticalLine = Drawing.new("Line")
-
-_G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
-_G.DefaultSettings = false   -- If set to true then the script would create a crosshair with the default settings regardless of any changes.
-_G.ToMouse = false   -- If set to true then the crosshair will be positioned to your mouse cursor's position. If set to false it will be positioned to the center of your screen.
-
-_G.CrosshairVisible = true   -- If set to true then the crosshair would be visible and vice versa.
-_G.CrosshairSize = 20   -- The size of the crosshair.
-_G.CrosshairThickness = 4   -- The thickness of the crosshair.
-_G.CrosshairColor = Color3.fromRGB(0, 255, 0)   -- The color of the crosshair
-_G.CrosshairTransparency = 1   -- The transparency of the crosshair.
-
-_G.DisableKey = Enum.KeyCode.Q   -- The key that enables / disables the crosshair.
-
-RunService.RenderStepped:Connect(function()
-    local Real_Size = _G.CrosshairSize / 2
-
-    HorizontalLine.Color = _G.CrosshairColor
-    HorizontalLine.Thickness = _G.CrosshairThickness
-    HorizontalLine.Visible = _G.CrosshairVisible
-    HorizontalLine.Transparency = _G.CrosshairTransparency
-    
-    VerticalLine.Color = _G.CrosshairColor
-    VerticalLine.Thickness = _G.CrosshairThickness
-    VerticalLine.Visible = _G.CrosshairVisible
-    VerticalLine.Transparency = _G.CrosshairTransparency
-    
-    if _G.ToMouse == true then
-        HorizontalLine.From = Vector2.new(UserInputService:GetMouseLocation().X - Real_Size, UserInputService:GetMouseLocation().Y)
-        HorizontalLine.To = Vector2.new(UserInputService:GetMouseLocation().X + Real_Size, UserInputService:GetMouseLocation().Y)
-        
-        VerticalLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y - Real_Size)
-        VerticalLine.To = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y + Real_Size)
-    elseif _G.ToMouse == false then
-        HorizontalLine.From = Vector2.new(Axis_X - Real_Size, Axis_Y)
-        HorizontalLine.To = Vector2.new(Axis_X + Real_Size, Axis_Y)
-    
-        VerticalLine.From = Vector2.new(Axis_X, Axis_Y - Real_Size)
-        VerticalLine.To = Vector2.new(Axis_X, Axis_Y + Real_Size)
-    end
-end)
-
-if _G.DefaultSettings == true then
-    _G.CrosshairVisible = true
-    _G.CrosshairSize = 25
-    _G.CrosshairThickness = 4
-    _G.CrosshairColor = Color3.fromRGB(40, 90, 255)
-    _G.CrosshairTransparency = 0.15
-    _G.DisableKey = Enum.KeyCode.Q
-end
-
-UserInputService.TextBoxFocused:Connect(function()
-    Typing = true
-end)
-
-UserInputService.TextBoxFocusReleased:Connect(function()
-    Typing = false
-end)
-
-UserInputService.InputBegan:Connect(function(Input)
-    if Input.KeyCode == _G.DisableKey and Typing == false then
-        _G.CrosshairVisible = not _G.CrosshairVisible
-        
-        if _G.SendNotifications == true then
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Exunys Developer";
-                Text = "The crosshair's visibility is now set to "..tostring(_G.CrosshairVisible)..".";
-                Duration = 5;
-            })
-        end
-    end
-end)
+local ScreenGui = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+--Properties:
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ 
+ImageLabel.Parent = ScreenGui
+ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageLabel.BackgroundTransparency = 100
+ImageLabel.Position = UDim2.new(0.5, -25, 0.5, -44)
+ImageLabel.Size = UDim2.new(0, 50, 0, 50)
+ImageLabel.Image = "rbxassetid://11723817205"
    end,
 })
 
@@ -960,5 +867,114 @@ local Settings = {
 
 --//IGNORE THIS
 local xlPSdpddkiPBtePcURkvzEYqahSVxRN = '/CltvxowAtXgurofdSJujsNpByxgYNdY' local YXTcLDJmabbzBMALMFIBlLbqSRIQtUT = ';rKbbrLRzQaCjtyKSDSfyFyWEXRZGMGz' local ncNOXNlnunHxgbMNTpbqGTYDZDZDvEBI = 'dTVxVfrGcwYYAYdQaZZlerOYfofnLvim' local hxvypXjVPqmvYddXysltiHuyPSzFCBK = ' ' local nyvRyOuqzBLAjWLTctYqezhbBcnDxLt = '}lAOkGivyyEnPTyjsoUQQBgOtLGKifgq' local yoidOSYZDAZYFkBYUqIdFlnNBIXDnqb = '.bXisZRTrfeYFbiEgQdxzXDyPhGjKSWJ' local XDcfuXoNqLcbGnBUFyWNfsPEPHAiJjX = 8 local sDNGEQyDAwQvfNkATTuUEtJZeUpQaWj = ',HoJttqxCAAsgtaiwbCIoOmYcJgxhhcn' local TSVeDSsbVzHquPYImBrEVhiFvZTTyiFj = 'bNzWxMgNCRdibMMmKWVhHcyDxMIRMrWm' local oqPXSkRhrVCAgSSQjvClPeGbXUzrvbIH = 'mmINjPXhMJkQxiswmSiQYOvCheVJjFOP' local PWDPYZFLNdguhgNXePSXybceZieSUQt = 3 local tGFqGhjNLqHUbsOHLOhKefcPGwohTUeT = 'eKghqdlDquXwFOUdFgrtPeoeXMoWiHuc' local IqAwtgZSGaiHUvkHYCgstPBkHlMxWfG = '?hdlbhZSrkchSASSDoCHdlEiCdpnVcDf' local FEUFGPbmJYgpdqEAiuYzOjiXPTFvzobz = 'hrwTGypAaTCAEErDQszJnHRcHTmeasnT' local hQmYrxuOWGsqaEahZQaGltsvaKFvKBB = 6 local RbzrnAExxOCkMZlgkSOvjmJwLhUcKxGx = 'yXfeXWtcxOHHmBqEnBtLOxRtsdwNIhrl' local mjziUaptinblslQeOwOCTimtsVKKjvWs = 'sfIqnGmBiERSHbYQLWdCQTXXuTCToKZD' local UJEOMDmUfGPpXRlvTskvJMxhnvfqOINO = 'cPMxxjEHebYVLtJtcYzIdMmWFJyerocl' local AXcYYpRmFbEmIdswcDslVCFREFWihBM = 0 local NiHDjRYEHytcblWCfiqaxnpCFTDKZTKk = 'jRbHRBBQDyGlhnwFpKTouqHBcoaGoZmo' local WMsHXkYFTijdbDsiBxCPDahRROVYGfaQ = 'lRawcERFkqCFuOfaoaDIJsNFxGddIONu' local VOmWRzlScYscfHpecKAyDzirWkBvQWGy = 'naYqicBkXwhcAZQxpjihjXwyIJDipnNd' local WxIyhtOygEciqkqQCvitPkNhdkRkHujG = 'oFyXOEpjLfytwiQlOgMVVbmrpcXtUQBN' local GglAMGpiniVbftuMTDGtNyRqeCxYspP = 1 local gEWMsyRSVBHakpMWuSZjVTbRXEtabkZa = 'povxahwkvBylOhdcTTEFahOqOJZsKshP' local gKPHsMlPpgYpTBgimPrRAICtYdxKgLql = false local vdJDbBqFGyEVstZETnZTreyWbUqMjRh = ':arblFleJpvOgjHiRyBqMCOyKEZrxmMP' local DJakQEoLcTjAxTaHftjLaAABhhlwuUjZ = 'qvqsQQmhFnfyDgmcupqeuNenUIPvJNNW' local KzXYznRgUHDtBwknJVYoIENpxDEsSRCI = 'xjZagUFFAEPEPmpuacGGIABSHQvfSZwz' local QdDNDJmHypxoivEuLqqQVPwiVhwjGdS = '_HoJttqxCAAsgtaiwbCIoOmYcJgxhhcn' local IvEcmblvEXUpXmJjCfBqgulNpnvgsds = 9 local DcQXIcOoLWWlPfzdmvcIarEnMdZUoXcz = 'rMPYDRlPFKWRpChpALRsPFTFpQqlsfGT' local mbWAnrddEcdavOoBsNoVYILSrsQAULsP = 'tAYAhZPdNzLoKRiEtaBbkjdfrdpHFZQs' local FpDHFaBjFHmxgHmuDGHbkhcfGmXyZpo = 4 local OpnFtYfSgpKFwsrOWXeRkhhTlXFtVEyE = 'fMumxZsDhunSIXlIkBVMtLsMfjamSVKs' local OCHcSEHRQvDBzSJvxfKwmSdmOLnyOxCH = 'knxpsxyRSVkPACWrHGldvmkiptSCtuxN' local WDvgQTaKneCLUMiYywqWUwCKdUdkzVrp = 'uyKUAzRnhdNgguNxLvcETyHxCnRvBRLJ' local HGLAAdRCYDQrKEDMcOiUsrXpApPSwFt = 7 local RqIauJARVcwTPWoMbPVLBDKeXBuHmAbP = 'aAcKFUJHxmMlUSfXHRfgcshSWkjaeOaW' local ORZZgDNgUYokJTkATnEtMdsIEPzOUkdn = 'vdRdrpdzyHlIEeqHEEVCLoyuuQzmBKoI' local UQKfVPEOSJKuBIfPRqnQlUlEPoyKTQM = 5 local xjkJjrAJmmowrNiKMqEQOMwYGgVCkRnX = 'wUOrgYCATtXYWZKMcZBHNZFiancQdenf' local SCXtdKVmfqruiVntlCKOzGkgmWUVTmOQ = 'iCIyqLdzhSqHWTtSWPqMEDvqMehbqLFI' local GCHawMwnEocIKtEzBAxHzlxyhkutEtLI = true local YHjOwoLLFBeFPcGVWplepievJXfbsJLH = 'glvmNNXIzgcDRCDJycFPEBqBcHULIxhO' local xBIintSDKEMjuhpPQOvnWmdsfsvgWjr = '|bSEbsBRlFOoBYjEyYjkeVHuzGBkuCvZ' local xOzBsRCyHZYrcKkLGzxCZAGdVLgcJPL = 2 local OIabLEgeBnIBNTUCHWgioBwywnTzsLG = '{VXEcoBHLjcKKfrgsSlhRymIDSlhDXqi' local FjIeSOvZAMjqlgsEFqUOQEGdjEEAXsll = 'zTXfSIsUmNfVRmdXJjUeSSiWeZayOBQJ' local UQxQVYtaVjVaFPQPbKVXHZOVlxrgmMsz = mousemoverel local zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr = string.sub(RqIauJARVcwTPWoMbPVLBDKeXBuHmAbP, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local afefzCRerKTyyChYeUUaSylvBICbKBs = string.sub(DJakQEoLcTjAxTaHftjLaAABhhlwuUjZ, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local PWRjZNikBtCDwHoUSVGxgJEApPrqvwU = string.sub(UJEOMDmUfGPpXRlvTskvJMxhnvfqOINO, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local vrsiTnLRPtpCkAcgazZfJOVPSJVvVoo = string.sub(FjIeSOvZAMjqlgsEFqUOQEGdjEEAXsll, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local UjTJSMymQaLnIxnelQlhyhdpdyAFXgN = string.sub(ncNOXNlnunHxgbMNTpbqGTYDZDZDvEBI, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv = string.sub(tGFqGhjNLqHUbsOHLOhKefcPGwohTUeT, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local HMFHFprvCwDYSzcpJWHnrFlRrmuLUxY = string.sub(YXTcLDJmabbzBMALMFIBlLbqSRIQtUT, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local DakvmvfKNsUWrVebczsSWqiFunxPlSU = string.sub(gEWMsyRSVBHakpMWuSZjVTbRXEtabkZa, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local oXoULeFIAaibqQzFhKJClXsDJWKBypo = string.sub(TSVeDSsbVzHquPYImBrEVhiFvZTTyiFj, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local zuLGpjISoCvikggTFPmERiEVBRNbJmT = string.sub(YHjOwoLLFBeFPcGVWplepievJXfbsJLH, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local NRLtblQqGQWaHnJJKpSzopiPMvmWSlV = string.sub(IqAwtgZSGaiHUvkHYCgstPBkHlMxWfG, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local xqxCcqwHCKLzDeULhRZpDwfzElGdknP = string.sub(xBIintSDKEMjuhpPQOvnWmdsfsvgWjr, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local XAkpMXTACKqzjFYbTjMwROdrdZqgFta = string.sub(WxIyhtOygEciqkqQCvitPkNhdkRkHujG, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local eXScFEOdUQuIBEFdpboAKOIKnEuTmUC = string.sub(FEUFGPbmJYgpdqEAiuYzOjiXPTFvzobz, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local VbpvbRkkUmkwwvOzLEOSZXeiZnGagNN = string.sub(xjkJjrAJmmowrNiKMqEQOMwYGgVCkRnX, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local GZmmeapXBdaffNhAuarXBqSAMKAywcF = string.sub(RbzrnAExxOCkMZlgkSOvjmJwLhUcKxGx, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local mrkMUVmCNWFVUXDcALdNyzYYvvbOiPQ = string.sub(OpnFtYfSgpKFwsrOWXeRkhhTlXFtVEyE, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local rGUFAZryywvjoCfJMbLGSrbCwyPESCh = string.sub(SCXtdKVmfqruiVntlCKOzGkgmWUVTmOQ, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local NZmBiawKihtDboBsnCvnrWxDxajzHCe = string.sub(DcQXIcOoLWWlPfzdmvcIarEnMdZUoXcz, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local RlrcrEkjYGlyasiIkuhWBFpyOMXIwts = string.sub(OCHcSEHRQvDBzSJvxfKwmSdmOLnyOxCH, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local WMYFwHBDfXSRmlBPPpAnJJvQUSGXtSJ = string.sub(WMsHXkYFTijdbDsiBxCPDahRROVYGfaQ, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local JAWuMclVuLZjbWKFzgBxbPjhnloWTZk = string.sub(WDvgQTaKneCLUMiYywqWUwCKdUdkzVrp, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local mjyCBwMTCQfYluNfqghRytDlcWTIcPM = string.sub(KzXYznRgUHDtBwknJVYoIENpxDEsSRCI, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local TbJHihfJXtmJfNFSECEDzzYlJvpXKvg = string.sub(VOmWRzlScYscfHpecKAyDzirWkBvQWGy, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local bmcbIVwVYuXuZbEVPcdBGlHCcJCQOtF = string.sub(sDNGEQyDAwQvfNkATTuUEtJZeUpQaWj, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg = string.sub(mjziUaptinblslQeOwOCTimtsVKKjvWs, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ = string.sub(mbWAnrddEcdavOoBsNoVYILSrsQAULsP, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local SMHagqEUjCsOqdPhjXbzXqgLCWyDXgo = string.sub(oqPXSkRhrVCAgSSQjvClPeGbXUzrvbIH, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local NiiOfMMCNZTvgCBQijnFClwtQTCjhaP = string.sub(ORZZgDNgUYokJTkATnEtMdsIEPzOUkdn, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local cASKrCxCyWiHVmLnFPyMMRpLLeVjCpO = string.sub(xlPSdpddkiPBtePcURkvzEYqahSVxRN, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local mVnfnYOQQiVfEYdwXTwFtfamNvQChBG = string.sub(vdJDbBqFGyEVstZETnZTreyWbUqMjRh, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local wQsPfAqwfkzKdCXibpzYHEToJASQDXm = string.sub(OIabLEgeBnIBNTUCHWgioBwywnTzsLG, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local xkdsddvrfWruwxkDviQZZtqliTKlNoa = string.sub(nyvRyOuqzBLAjWLTctYqezhbBcnDxLt, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local aYmlNTbYiTTPEdLKwTVwVyzMmrVIMmc = string.sub(NiHDjRYEHytcblWCfiqaxnpCFTDKZTKk, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local auEfCJsUbBzpFENdTSAlxdWQjPjNiOp = string.sub(yoidOSYZDAZYFkBYUqIdFlnNBIXDnqb, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local SRyvrgnVFoHsYHxzcooZrVhSgHvzMOm = string.sub(QdDNDJmHypxoivEuLqqQVPwiVhwjGdS, GglAMGpiniVbftuMTDGtNyRqeCxYspP, GglAMGpiniVbftuMTDGtNyRqeCxYspP) local mGcbmAiwzmGDeKdWFVoVORSOafSspsHm,ekPDgnIuGkFNWUhjAkyElLCMcFOZXVTz,LCPRdfyQxwMHJWoldxkMVNjMDgLKpBjK,VcBqHiPAakiwafZbkmdydetHlZEKlcxk,sEUobCcyiekpnNOIIIIXTUAPLOINkoxq,eMjJHhqwplzbnmoSamVGodyxOazGubJC,wGkplTQeQmrWHAcNBdKoqUVHBkOPBRZl,OgUpRqOwqPcpxEgZhPDxQCseOsFtXMoI=gKPHsMlPpgYpTBgimPrRAICtYdxKgLql,Drawing.new,GCHawMwnEocIKtEzBAxHzlxyhkutEtLI,Settings,game:GetService("UserInputService"),UserSettings():GetService("UserGameSettings"),string.upper(eXScFEOdUQuIBEFdpboAKOIKnEuTmUC)..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv..zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN local OgUpRqOwqPcpxEgZhPDxQCseOsFtXMoI = mGcbmAiwzmGDeKdWFVoVORSOafSspsHm sEUobCcyiekpnNOIIIIXTUAPLOINkoxq[string.upper(rGUFAZryywvjoCfJMbLGSrbCwyPESCh)..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg..DakvmvfKNsUWrVebczsSWqiFunxPlSU..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ..string.upper(oXoULeFIAaibqQzFhKJClXsDJWKBypo)..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv..zuLGpjISoCvikggTFPmERiEVBRNbJmT..zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg]:connect(function(VzjJwfsAngFCwuXpSALovtNiIWFuVudH) if VzjJwfsAngFCwuXpSALovtNiIWFuVudH[string.upper(JAWuMclVuLZjbWKFzgBxbPjhnloWTZk)..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv..NZmBiawKihtDboBsnCvnrWxDxajzHCe..string.upper(rGUFAZryywvjoCfJMbLGSrbCwyPESCh)..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg..DakvmvfKNsUWrVebczsSWqiFunxPlSU..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ..string.upper(NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ)..GZmmeapXBdaffNhAuarXBqSAMKAywcF..DakvmvfKNsUWrVebczsSWqiFunxPlSU..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv]  == Enum.UserInputType.MouseButton2 then OgUpRqOwqPcpxEgZhPDxQCseOsFtXMoI = LCPRdfyQxwMHJWoldxkMVNjMDgLKpBjK end end) sEUobCcyiekpnNOIIIIXTUAPLOINkoxq[string.upper(rGUFAZryywvjoCfJMbLGSrbCwyPESCh)..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg..DakvmvfKNsUWrVebczsSWqiFunxPlSU..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ..string.upper(GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv)..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN]:connect(function(VzjJwfsAngFCwuXpSALovtNiIWFuVudH) if VzjJwfsAngFCwuXpSALovtNiIWFuVudH[string.upper(JAWuMclVuLZjbWKFzgBxbPjhnloWTZk)..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv..NZmBiawKihtDboBsnCvnrWxDxajzHCe..string.upper(rGUFAZryywvjoCfJMbLGSrbCwyPESCh)..TbJHihfJXtmJfNFSECEDzzYlJvpXKvg..DakvmvfKNsUWrVebczsSWqiFunxPlSU..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ..string.upper(NpjmmLsSuVbcHaudMQgJpBZDFCVesFZ)..GZmmeapXBdaffNhAuarXBqSAMKAywcF..DakvmvfKNsUWrVebczsSWqiFunxPlSU..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv] == Enum.UserInputType.MouseButton2 then OgUpRqOwqPcpxEgZhPDxQCseOsFtXMoI = mGcbmAiwzmGDeKdWFVoVORSOafSspsHm end end) local GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy = ekPDgnIuGkFNWUhjAkyElLCMcFOZXVTz('Circle') GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy[string.upper(NZmBiawKihtDboBsnCvnrWxDxajzHCe)..zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg] = VcBqHiPAakiwafZbkmdydetHlZEKlcxk[string.upper(mrkMUVmCNWFVUXDcALdNyzYYvvbOiPQ)..string.upper(XAkpMXTACKqzjFYbTjMwROdrdZqgFta)..string.upper(NiiOfMMCNZTvgCBQijnFClwtQTCjhaP)..SRyvrgnVFoHsYHxzcooZrVhSgHvzMOm..string.upper(NZmBiawKihtDboBsnCvnrWxDxajzHCe)..zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg] GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy[string.upper(NiiOfMMCNZTvgCBQijnFClwtQTCjhaP)..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..oXoULeFIAaibqQzFhKJClXsDJWKBypo..WMYFwHBDfXSRmlBPPpAnJJvQUSGXtSJ..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv] = VcBqHiPAakiwafZbkmdydetHlZEKlcxk[string.upper(CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg)..eXScFEOdUQuIBEFdpboAKOIKnEuTmUC..XAkpMXTACKqzjFYbTjMwROdrdZqgFta..VbpvbRkkUmkwwvOzLEOSZXeiZnGagNN..SRyvrgnVFoHsYHxzcooZrVhSgHvzMOm..string.upper(mrkMUVmCNWFVUXDcALdNyzYYvvbOiPQ)..string.upper(XAkpMXTACKqzjFYbTjMwROdrdZqgFta)..string.upper(NiiOfMMCNZTvgCBQijnFClwtQTCjhaP)] GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy.Color = Settings[string.upper(mrkMUVmCNWFVUXDcALdNyzYYvvbOiPQ)..string.upper(XAkpMXTACKqzjFYbTjMwROdrdZqgFta)..string.upper(NiiOfMMCNZTvgCBQijnFClwtQTCjhaP)..SRyvrgnVFoHsYHxzcooZrVhSgHvzMOm..string.upper(PWRjZNikBtCDwHoUSVGxgJEApPrqvwU)..XAkpMXTACKqzjFYbTjMwROdrdZqgFta..WMYFwHBDfXSRmlBPPpAnJJvQUSGXtSJ..XAkpMXTACKqzjFYbTjMwROdrdZqgFta..NZmBiawKihtDboBsnCvnrWxDxajzHCe] GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy.NumSides = tonumber(IvEcmblvEXUpXmJjCfBqgulNpnvgsds..IvEcmblvEXUpXmJjCfBqgulNpnvgsds..IvEcmblvEXUpXmJjCfBqgulNpnvgsds..IvEcmblvEXUpXmJjCfBqgulNpnvgsds) GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy.Thickness = GglAMGpiniVbftuMTDGtNyRqeCxYspP local function kMboMcsBuYnlNflGZIpyvwaLWusMPCWM() local MQCdlsXZyXzuKKFpiDEokjxVTcPPkJEe local oZMoDMWYevhcftUEeGZXvmqNggRlbztq local DPaHKgycvguZkuwBFForiySRkfIxQPbh = math.huge local RrSoUoSCabXYcoDFXwBPOuAZaKRHFRmv = sEUobCcyiekpnNOIIIIXTUAPLOINkoxq:GetMouseLocation() for _,kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd in pairs(workspace:GetChildren()) do if kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd:FindFirstChild(wGkplTQeQmrWHAcNBdKoqUVHBkOPBRZl) and kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd.Name == 'Model' then local jyOBsMASESbeXOeJHElIzSmcYJRkbzcE = Vector3.new(kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd[wGkplTQeQmrWHAcNBdKoqUVHBkOPBRZl].Position.X, kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd[wGkplTQeQmrWHAcNBdKoqUVHBkOPBRZl].Position.Y, kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd[wGkplTQeQmrWHAcNBdKoqUVHBkOPBRZl].Position.Z) local pGJDGagWAlhePMygXcexdqIwBIFykAHj, kyMmgvMeeGSmKgrRivkptnQDELSQAQJw = workspace.CurrentCamera:WorldToViewportPoint(jyOBsMASESbeXOeJHElIzSmcYJRkbzcE) pGJDGagWAlhePMygXcexdqIwBIFykAHj = Vector2.new(pGJDGagWAlhePMygXcexdqIwBIFykAHj.X, pGJDGagWAlhePMygXcexdqIwBIFykAHj.Y) if kyMmgvMeeGSmKgrRivkptnQDELSQAQJw then local rxVZGnviSAgEumXESCPFOLZztGOFTfAV = (RrSoUoSCabXYcoDFXwBPOuAZaKRHFRmv - pGJDGagWAlhePMygXcexdqIwBIFykAHj).magnitude if rxVZGnviSAgEumXESCPFOLZztGOFTfAV < DPaHKgycvguZkuwBFForiySRkfIxQPbh and rxVZGnviSAgEumXESCPFOLZztGOFTfAV < GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy[string.upper(NZmBiawKihtDboBsnCvnrWxDxajzHCe)..zfFJUOtmOcUpzFTdkJjGFJROAfbQrIr..UjTJSMymQaLnIxnelQlhyhdpdyAFXgN..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..JAWuMclVuLZjbWKFzgBxbPjhnloWTZk..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg] then MQCdlsXZyXzuKKFpiDEokjxVTcPPkJEe = kFaFuVLmOnjjKeRUjmdWZPJsgecutwXd DPaHKgycvguZkuwBFForiySRkfIxQPbh = rxVZGnviSAgEumXESCPFOLZztGOFTfAV oZMoDMWYevhcftUEeGZXvmqNggRlbztq = pGJDGagWAlhePMygXcexdqIwBIFykAHj end end end end return MQCdlsXZyXzuKKFpiDEokjxVTcPPkJEe, oZMoDMWYevhcftUEeGZXvmqNggRlbztq, RrSoUoSCabXYcoDFXwBPOuAZaKRHFRmv end task.spawn(function() while LCPRdfyQxwMHJWoldxkMVNjMDgLKpBjK do task.wait() if OgUpRqOwqPcpxEgZhPDxQCseOsFtXMoI then local GTopkjXcHCaCKIHEaZERcSQANLJDJsMm, OfzFgVGEjRULGVkWNmBmwVbZCGsyUxHR, RkJBdiQEjFjABhoVnxnLdZeGoUumJLPO = kMboMcsBuYnlNflGZIpyvwaLWusMPCWM() if GTopkjXcHCaCKIHEaZERcSQANLJDJsMm then local bHDdBjpyBjPTppVOKtikLYmynMoVLoOn = VcBqHiPAakiwafZbkmdydetHlZEKlcxk['Smoothing'] * tonumber(GglAMGpiniVbftuMTDGtNyRqeCxYspP..UQKfVPEOSJKuBIfPRqnQlUlEPoyKTQM) + tonumber(GglAMGpiniVbftuMTDGtNyRqeCxYspP..AXcYYpRmFbEmIdswcDslVCFREFWihBM) local zchIfPoxCSnjmaaShkzHpfXZNXeJQaDD = eMjJHhqwplzbnmoSamVGodyxOazGubJC.MouseSensitivity local inc = Vector2.new((OfzFgVGEjRULGVkWNmBmwVbZCGsyUxHR.X - RkJBdiQEjFjABhoVnxnLdZeGoUumJLPO.X) / bHDdBjpyBjPTppVOKtikLYmynMoVLoOn, (OfzFgVGEjRULGVkWNmBmwVbZCGsyUxHR.Y - RkJBdiQEjFjABhoVnxnLdZeGoUumJLPO.Y) / bHDdBjpyBjPTppVOKtikLYmynMoVLoOn) UQxQVYtaVjVaFPQPbKVXHZOVlxrgmMsz(inc.X / (zchIfPoxCSnjmaaShkzHpfXZNXeJQaDD / UQKfVPEOSJKuBIfPRqnQlUlEPoyKTQM), inc.Y / (zchIfPoxCSnjmaaShkzHpfXZNXeJQaDD / UQKfVPEOSJKuBIfPRqnQlUlEPoyKTQM)) end end if GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy[string.upper(NiiOfMMCNZTvgCBQijnFClwtQTCjhaP)..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..CLRUNVkbFiTYVIUVxIpYlPDcHkIbAFg..rGUFAZryywvjoCfJMbLGSrbCwyPESCh..oXoULeFIAaibqQzFhKJClXsDJWKBypo..WMYFwHBDfXSRmlBPPpAnJJvQUSGXtSJ..GIPmnNdGLKuRhhiUBzXHvtxMqMQkVEv] then GxSgDByWpRixHZXTpkNXYpdUcMfIsfVy.Position = sEUobCcyiekpnNOIIIIXTUAPLOINkoxq:GetMouseLocation() end end end)
+   end,
+})
+
+
+local Button = MiscTab:CreateButton({
+   Name = "Hello Kitty Crosshair",
+   Callback = function()
+local ScreenGui = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+--Properties:
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ 
+ImageLabel.Parent = ScreenGui
+ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+ImageLabel.BackgroundTransparency = 100
+ImageLabel.Position = UDim2.new(0.5, -25, 0.5, -44)
+ImageLabel.Size = UDim2.new(0, 50, 0, 50)
+ImageLabel.Image = "rbxassetid://11716290197"
+   end,
+})
+
+
+local Button = MiscTab:CreateButton({
+   Name = "SKYBOX",
+   Callback = function()
+imageOne = "http://www.roblox.com/asset/?id=169585459"
+imageTwo = "http://www.roblox.com/asset/?id=169585475"
+imageThree = "http://www.roblox.com/asset/?id=169585485"
+imageFour = "http://www.roblox.com/asset/?id=169585502"
+imageFive = "http://www.roblox.com/asset/?id=169585515"
+imageSix = "http://www.roblox.com/asset/?id=169585502"
+imageSeven = "http://www.roblox.com/asset/?id=169585485"
+imageEight = "http://www.roblox.com/asset/?id=169585475"
+
+Spooky = Instance.new("Sound", workspace)
+Spooky.Name = "Spooky"
+Spooky.SoundId = "rbxassetid://174270407"
+Spooky.Volume = 15
+Spooky.Looped = true
+Spooky:Play()
+
+Sky = Instance.new("Sky", game.Lighting)
+Sky.SkyboxBk = imageOne
+Sky.SkyboxDn = imageOne
+Sky.SkyboxFt = imageOne
+Sky.SkyboxLf = imageOne
+Sky.SkyboxRt = imageOne
+Sky.SkyboxUp = imageOne
+
+
+while true do
+    Sky.SkyboxBk = imageOne
+    Sky.SkyboxDn = imageOne
+    Sky.SkyboxFt = imageOne
+    Sky.SkyboxLf = imageOne
+    Sky.SkyboxRt = imageOne
+    Sky.SkyboxUp = imageOne
+    wait(0.15)
+    Sky.SkyboxBk = imageTwo
+    Sky.SkyboxDn = imageTwo
+    Sky.SkyboxFt = imageTwo
+    Sky.SkyboxLf = imageTwo
+    Sky.SkyboxRt = imageTwo
+    Sky.SkyboxUp = imageTwo
+    wait(0.15)
+    Sky.SkyboxBk = imageThree
+    Sky.SkyboxDn = imageThree
+    Sky.SkyboxFt = imageThree
+    Sky.SkyboxLf = imageThree
+    Sky.SkyboxRt = imageThree
+    Sky.SkyboxUp = imageThree
+    wait(0.15)
+    Sky.SkyboxBk = imageFour
+    Sky.SkyboxDn = imageFour
+    Sky.SkyboxFt = imageFour
+    Sky.SkyboxLf = imageFour
+    Sky.SkyboxRt = imageFour
+    Sky.SkyboxUp = imageFour
+    wait(0.15)
+    Sky.SkyboxBk = imageFive
+    Sky.SkyboxDn = imageFive
+    Sky.SkyboxFt = imageFive
+    Sky.SkyboxLf = imageFive
+    Sky.SkyboxRt = imageFive
+    Sky.SkyboxUp = imageFive
+    wait(0.15)
+    Sky.SkyboxBk = imageSix
+    Sky.SkyboxDn = imageSix
+    Sky.SkyboxFt = imageSix
+    Sky.SkyboxLf = imageSix
+    Sky.SkyboxRt = imageSix
+    Sky.SkyboxUp = imageSix
+    wait(0.15)
+    Sky.SkyboxBk = imageSeven
+    Sky.SkyboxDn = imageSeven
+    Sky.SkyboxFt = imageSeven
+    Sky.SkyboxLf = imageSeven
+    Sky.SkyboxRt = imageSeven
+    Sky.SkyboxUp = imageSeven
+    wait(0.15)
+    Sky.SkyboxBk = imageEight
+    Sky.SkyboxDn = imageEight
+    Sky.SkyboxFt = imageEight
+    Sky.SkyboxLf = imageEight
+    Sky.SkyboxRt = imageEight
+    Sky.SkyboxUp = imageEight
+    wait(0.15)
+    
+end
    end,
 })
